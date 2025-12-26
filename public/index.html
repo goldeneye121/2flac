@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FLAC - Download Musik Lossless HQ</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/assets/svg/1f3b5.svg">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="will-change">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-wave-square"></i>
+                <span>2</span>FLAC
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#converter"><i class="fas fa-download"></i> Konversi</a>
+                <a href="#search"><i class="fas fa-search"></i> Cari Musik</a>
+                <a href="#trending"><i class="fas fa-chart-line"></i> Trending</a>
+                <a href="#features"><i class="fas fa-star"></i> Fitur</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero will-change">
+        <h1>Download & Konversi ke <span>FLAC Lossless</span></h1>
+        <p>Ubah musik dari YouTube, Spotify, dan SoundCloud ke format FLAC berkualitas tinggi. Nikmati audio lossless dengan detail studio.</p>
+    </section>
+
+    <!-- Main Converter Section -->
+    <section id="converter" class="converter will-change">
+        <div class="converter-card">
+            <h2><i class="fas fa-file-audio"></i> Konverter ke FLAC</h2>
+            <p class="subtitle">Tempel URL atau gunakan pencarian untuk mengonversi ke format FLAC kualitas tertinggi</p>
+            
+            <div class="tab-container">
+                <div class="tab active" data-platform="all">
+                    <i class="fas fa-music"></i> Semua Platform
+                </div>
+                <div class="tab" data-platform="youtube">
+                    <i class="fab fa-youtube"></i> YouTube
+                </div>
+                <div class="tab" data-platform="spotify">
+                    <i class="fab fa-spotify"></i> Spotify
+                </div>
+                <div class="tab" data-platform="soundcloud">
+                    <i class="fab fa-soundcloud"></i> SoundCloud
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="urlInput" class="url-input" placeholder="Tempel URL YouTube, Spotify, atau SoundCloud di sini...">
+                <button id="convertBtn" class="convert-btn">
+                    <i class="fas fa-bolt"></i> Konversi ke FLAC
+                </button>
+            </div>
+            
+            <div class="search-section">
+                <h3><i class="fas fa-search"></i> Atau Cari Musik Langsung</h3>
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari lagu, album, atau artis...">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </div>
+            
+            <div class="status-message" id="statusMessage"></div>
+            
+            <div class="loading" id="loadingIndicator">
+                <div class="loading-spinner"></div>
+                <p>Mengonversi ke FLAC. Harap tunggu...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Details Modal -->
+    <div class="modal-overlay" id="musicModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="music-details" id="musicDetails">
+                <!-- Detail musik akan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results Section -->
+    <section class="results will-change">
+        <div class="section-header">
+            <h2><i class="fas fa-search"></i> Hasil Pencarian</h2>
+            <div class="results-controls">
+                <span id="resultsCount">0 hasil ditemukan</span>
+                <select id="sortSelect" class="sort-select">
+                    <option value="relevance">Relevansi</option>
+                    <option value="popularity">Popularitas</option>
+                    <option value="date">Tanggal Terbaru</option>
+                    <option value="duration">Durasi</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="results-grid" id="resultsGrid">
+            <!-- Hasil pencarian akan dimuat di sini -->
+        </div>
+        
+        <div class="load-more-container" id="loadMoreContainer">
+            <button id="loadMoreBtn" class="load-more-btn">
+                <i class="fas fa-plus"></i> Muat Lebih Banyak
+            </button>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section id="trending" class="trending will-change">
+        <div class="section-header">
+            <h2><i class="fas fa-chart-line"></i> Trending Musik</h2>
+            <div class="trending-tabs">
+                <button class="trending-tab active" data-time="week">Minggu Ini</button>
+                <button class="trending-tab" data-time="month">Bulan Ini</button>
+                <button class="trending-tab" data-time="all">Sepanjang Masa</button>
+            </div>
+        </div>
+        
+        <div class="trending-grid" id="trendingGrid">
+            <!-- Konten trending akan dimuat di sini -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features will-change">
+        <h2><i class="fas fa-star"></i> Keunggulan 2FLAC</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Konversi Super Cepat</h3>
+                <p>Proses konversi ke FLAC hanya membutuhkan beberapa detik dengan teknologi server terbaru.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-audio"></i>
+                </div>
+                <h3>Kualitas Lossless</h3>
+                <p>Hasilkan file FLAC dengan kualitas 24-bit/96kHz, menjaga setiap detail audio asli.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-compact-disc"></i>
+                </div>
+                <h3>Metadata Lengkap</h3>
+                <p>Dapatkan informasi lengkap lagu termasuk album, artis, genre, dan cover art.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Pencarian Cerdas</h3>
+                <p>Cari dari jutaan lagu di berbagai platform tanpa perlu menyalin URL manual.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Responsif & Ringan</h3>
+                <p>Akses dari perangkat apapun dengan performa optimal dan animasi smooth.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Aman & Privasi</h3>
+                <p>Tidak ada data yang disimpan. Semua proses konversi bersifat real-time dan aman.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-to will-change">
+        <h2><i class="fas fa-cogs"></i> Cara Kerja</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Cari atau Tempel URL</h3>
+                <p>Gunakan fitur pencarian atau tempel langsung URL dari YouTube, Spotify, atau SoundCloud.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Pilih Kualitas FLAC</h3>
+                <p>Pilih resolusi FLAC yang diinginkan (16-bit/44.1kHz hingga 24-bit/192kHz).</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Konversi & Download</h3>
+                <p>Sistem akan mengonversi dan menyediakan file FLAC untuk diunduh dengan metadata lengkap.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-wave-square"></i> 2FLAC</h3>
+                <p>Platform konversi musik ke format FLAC lossless dengan kualitas terbaik. Nikmati audio studio quality dari berbagai platform.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Platform Didukung</h3>
+                <ul class="footer-links">
+                    <li><i class="fab fa-youtube"></i> YouTube Music</li>
+                    <li><i class="fab fa-spotify"></i> Spotify</li>
+                    <li><i class="fab fa-soundcloud"></i> SoundCloud</li>
+                    <li><i class="fas fa-music"></i> Deezer</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Tautan Cepat</h3>
+                <ul class="footer-links">
+                    <li><a href="#converter">Konverter</a></li>
+                    <li><a href="#trending">Trending</a></li>
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#" onclick="showStatus('FAQ akan segera tersedia', 'info')">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showStatus('Terms of Service akan segera tersedia', 'info')">Syarat Layanan</a></li>
+                    <li><a href="#" onclick="showStatus('Privacy Policy akan segera tersedia', 'info')">Kebijakan Privasi</a></li>
+                    <li><a href="#" onclick="showStatus('DMCA Policy akan segera tersedia', 'info')">DMCA</a></li>
+                    <li><a href="#" onclick="showStatus('Hubungi: support@2flac.com', 'info')">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 2FLAC. Hak cipta dilindungi. Website demonstrasi untuk keperluan edukasi.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Hormati hak cipta artis dan gunakan musik dengan bijak.</p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
